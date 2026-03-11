@@ -40,8 +40,7 @@ jobs:
         
   demo2-env:
     runs-on: ubuntu-lastest
-
     steps:
-      -name: "Mostrar variable del workflow"
-         run: echo "SALUDO = $SALUDO"
+      - name: "Mostrar variable del workflow"
+        run: echo "SALUDO = $SALUDO"
         
