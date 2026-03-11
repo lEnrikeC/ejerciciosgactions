@@ -18,3 +18,8 @@ jobs:
             echo "Commit SHA: ${{github.sha}}"
             echo "Actor: ${{github.actor}}"
             echo "Evento: ${{github.event_name}}"
+
+        - name: contexto runner
+          run: |
+            echo "Sistema Operativo del runner: ${{runner.os}}"
+            echo "Directorio: ${{runner.temp}}"
