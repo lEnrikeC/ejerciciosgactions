@@ -1,0 +1,37 @@
+
+name: Demo Condicionales
+
+# Controls when the workflow will run
+on:
+  push:
+permissions: 
+  contents: read
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: step 1 - siempre se ejecuta
+        run: echo "Step 1 OK"
+
+      - name: step 2 forzar el fallo (simulado)
+        run: exit 1
+        
+      - name: step 3 solo si todo es OK (se va a saltar)
+        if: success()
+        run: echo "Este step no se ejecutará porque el step anterior falló"
+
+      - name: step 4 solo si hubo fallo (se ejecutará)
+        if: failure()
+        run: echo "fallo detectado"
+
+      - name: step 5 siempre corre
+        if: always()
+        run: echo "limpieza final siempre se ejecutará"
+
+      - name: step 6 solo en la rama main
+        if: github.ref_name == 'main'
+        run: echo "este step solo corre en main"
